@@ -1,0 +1,158 @@
+mutation {
+  bulkOperationRunQuery(
+    query:"""
+    {
+    orders(first: 1000, query: "created_at:<now") {
+    edges {
+      node {
+        id
+        name
+        # ordernumber
+        billingAddress{
+            id
+            name
+            address1
+            address2
+            city
+            company
+            country
+            countryCode
+            firstName
+            lastName
+            phone
+            province
+            provinceCode
+            latitude
+            longitude
+            zip
+        }
+        browserip: clientIp
+        buyeracceptsmarketing: customerAcceptsMarketing
+        cancelReason
+        #carttoken
+        #customerJourneySummary
+        currencyCode
+        customer{
+
+          id
+          firstName
+          lastName
+          email
+        }
+		email
+        displayFinancialStatus
+		displayFulfillmentStatus
+        gateway: paymentGatewayNames
+        customerJourneySummary{
+          lastVisit{
+          landingPage
+          utmParameters{
+            source
+            medium
+            campaign
+            term
+            content
+          	}
+         referringsite: referrerUrl
+          }
+        }
+        note
+        shippingAddress{
+          id
+          name
+          address1
+          address2
+          city
+          company
+          country
+          countryCodeV2
+          firstName
+          lastName
+          phone
+          province
+          provinceCode
+          latitude
+          longitude
+          zip
+        }
+        sourceName
+        #token
+        subtotalPriceSet{
+          shopMoney{
+            amount
+          }
+        }
+        taxesIncluded
+        totalDiscountsSet{
+          shopMoney{
+            amount
+          }
+        }
+        originalTotalPriceSet{
+          shopMoney{
+            amount
+          }
+        }
+        totalPriceSet{
+          shopMoney{
+            amount
+          }
+        }
+        totalTaxSet{
+          shopMoney{
+            amount
+          }
+        }
+        totalWeight
+        #processingmethod
+        discountCodes
+        cancelledAt
+        closedAt
+        processedAt
+				#locationId
+        lineItems(first: 20){
+        edges{
+          node{
+            id
+            sku
+            originalUnitPriceSet{
+                shopMoney{
+                amount
+            }
+            }
+          }
+          }
+        }
+        shippingLine{
+          id
+          title
+          code
+          source
+        }
+        createdAt
+        updatedAt
+        tags
+        refunds{
+		    id
+            totalRefundedSet{
+                shopMoney{
+                amount
+            }
+          }
+		}
+      }
+    }
+  }
+}
+"""
+  ) {
+    bulkOperation {
+      id
+      status
+    }
+    userErrors {
+      field
+      message
+    }
+  }
+}
